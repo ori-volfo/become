@@ -89,8 +89,25 @@ class DB {
         return $sql;
     }
 
-    public function truncate_table($table){
-        $this->query('truncate table '.$table.';');
+    public function select_all($table){
+        $this->query("SELECT * FROM ".$table);
         return $this->resultSet();
+    }
+
+    public function insert_user($user){
+        $this->query("INSERT INTO `users` (first_name,last_name,email,birth_date,phone,city_id) 
+                                        VALUES (:first_name,:last_name,:email,:birth_date,:phone,:city_id)
+                                        ON DUPLICATE KEY UPDATE 
+                                            `first_name` = :first_name,
+                                            `last_name` = :last_name,
+                                            `birth_date` = :birth_date,
+                                            `phone` = :phone,
+                                            `city_id` = :city_id;");
+        $this->bind(':first_name', $user->first_name);
+        $this->bind(':last_name', $user->last_name);
+        $this->bind(':email', $user->email);
+        $this->bind(':birth_date', $user->birth_date);
+        $this->bind(':phone', $user->phone);
+        $this->bind(':city_id', $user->city_id);
     }
 }

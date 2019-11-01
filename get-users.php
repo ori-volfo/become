@@ -19,8 +19,8 @@ function main(){
 
     // get cities mapping from DB
     $database = $db::getDbCon();
-    $database->query("SELECT * FROM cities");
-    $cities = $database->resultSet();
+    $cities = $database->select_all("cities");
+
 
     // Find Jerusalem city_id from cities
     $jerusalem_id = $cities[array_search('Jerusalem',array_column($cities, 'city_name'))]['city_id'];
@@ -34,21 +34,7 @@ function main(){
             if($user->city_id == $jerusalem_id && $age < 21){ $log['deleted']++; continue; } // Skip users from Jerusalem who are under 21
 
             try { // Insert || Update users in DB
-                $database = $db::getDbCon();
-                $database->query("INSERT INTO `users` (first_name,last_name,email,birth_date,phone,city_id) 
-                                        VALUES (:first_name,:last_name,:email,:birth_date,:phone,:city_id)
-                                        ON DUPLICATE KEY UPDATE 
-                                            `first_name` = :first_name,
-                                            `last_name` = :last_name,
-                                            `birth_date` = :birth_date,
-                                            `phone` = :phone,
-                                            `city_id` = :city_id;");
-                $database->bind(':first_name', $user->first_name);
-                $database->bind(':last_name', $user->last_name);
-                $database->bind(':email', $user->email);
-                $database->bind(':birth_date', $user->birth_date);
-                $database->bind(':phone', $user->phone);
-                $database->bind(':city_id', $user->city_id);
+                $database->insert_user($user);
                 $database->execute();
 
                 // Log array update
