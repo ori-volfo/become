@@ -110,4 +110,12 @@ class DB {
         $this->bind(':phone', $user->phone);
         $this->bind(':city_id', $user->city_id);
     }
+
+    public function get_users_data(){
+        $this->query("SELECT first_name, last_name, email, birth_date, phone, city_name, country_name
+                            FROM users u, cities ci, countries co
+                            WHERE u.city_id = ci.city_id
+                                AND ci.country_id = co.country_id");
+        return $this->resultSet();
+    }
 }
