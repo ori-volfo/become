@@ -2,6 +2,17 @@ var Utils = (function(){
     "use strict";
 
     /**
+     * Gets a users array and adds a calculated age field
+     * @param users
+     * @returns {Array}
+     */
+    const addAgeField = (users)=>{
+        return users.map(user=> {
+            user.age = calcAge(user.birth_date);
+            return user;
+        });
+    };
+    /**
      * Gets a string birth date in the format yyyy-mm-dd and returns current age
      * @param birthDate
      * @returns {number}
@@ -13,6 +24,6 @@ var Utils = (function(){
     };
 
     return{
-        calcAge
+        addAgeField
     }
 })();

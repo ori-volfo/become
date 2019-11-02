@@ -29,15 +29,5 @@ include 'partials/header.php';
 
 </main>
 
-
-
-
-
-
-
-
-
-
-
 <?php
 include 'partials/footer.php';

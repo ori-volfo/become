@@ -11,7 +11,7 @@ var users = (function(){
 
         $.get(DBapiPath + '?query=get_users_data',(data)=>{
             usersArr = JSON.parse(data);
-            usersArr = addAgeField(usersArr);
+            usersArr = Utils.addAgeField(usersArr);
 
             populateUsersTable(usersArr);
             $usersTable.DataTable();
@@ -34,18 +34,6 @@ var users = (function(){
 
         });
         $usersTable.find('.tbody').append(html);
-    };
-
-    /**
-     * Gets a users array and adds a calculated age field
-     * @param users
-     * @returns {Array}
-     */
-    const addAgeField = (users)=>{
-        return users.map(user=> {
-            user.age = Utils.calcAge(user.birth_date);
-            return user;
-        });
     };
 
     return{

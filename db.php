@@ -19,8 +19,6 @@ class DB {
     }
 
 
-
-
     public static function getDbCon() {
         if(!isset(self::$_instance)) {
             self::$_instance = new DB();
@@ -113,6 +111,14 @@ class DB {
 
     public function get_users_data(){
         $this->query("SELECT first_name, last_name, email, birth_date, phone, city_name, country_name
+                            FROM users u, cities ci, countries co
+                            WHERE u.city_id = ci.city_id
+                                AND ci.country_id = co.country_id");
+        return $this->resultSet();
+    }
+
+    public function  get_users_stats(){
+        $this->query("SELECT birth_date, city_name, country_name
                             FROM users u, cities ci, countries co
                             WHERE u.city_id = ci.city_id
                                 AND ci.country_id = co.country_id");
