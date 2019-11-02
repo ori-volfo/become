@@ -41,7 +41,6 @@ var stats = (function(){
         let agesArr = [];
         dataArr.map(user=>agesArr.push(user.age));
 
-        console.log(agesArr);
         populateBarChart('#agesChart',agesArr.sort());
     };
 
@@ -57,7 +56,7 @@ var stats = (function(){
             data: {
                 datasets: [{
                     data: Object.values(dataObj), // number of graph items
-                    backgroundColor: Object.keys(dataObj).map(item=>intToRGB(hashCode(item))) //creates RGB color for each label
+                    backgroundColor: Object.keys(dataObj).map(item=>intToRGB(hashCode(item)*5)) //creates RGB color for each label. multiplied by 5 to diversify the colors.
                 }],
                 labels: Object.keys(dataObj), // graph labels
             },
@@ -72,7 +71,7 @@ var stats = (function(){
                 datasets: [{
                     label: '',
                     data: dataArr,
-                    backgroundColor: dataArr.map(item=>intToRGB(item*1234567)) //creates RGB color for each bar
+                    backgroundColor: dataArr.map(item=>intToRGB(item*1234567)) //creates RGB color for each bar. multiplied by 1234567 to diversify the colors.
                 }],
                 labels: dataArr, // graph labels
             },

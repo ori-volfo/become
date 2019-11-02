@@ -18,12 +18,12 @@
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.bundle.min.js"></script>
     <script src="<?=$project_path.'scripts/utils.js'?>" ></script>
-    <script src="<?=$project_path.'scripts/'.$title.'.js'?>" ></script>
+    <script src="<?=$project_path.'scripts/'.$title.'.js'?>"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Become</a>
+            <img src="https://www.become.co/assets/images/become-logo-white.svg" class="logo" alt="Become">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,10 +32,11 @@
                     <li class="nav-item <?= $title == 'users' ? 'active':''?>">
                         <a class="nav-link" href="<?=$project_path?>users.php">Users</a>
                     </li>
-                    <li class="nav-item <?= $title == 'users' ? 'stats':''?>">
+                    <li class="nav-item <?= $title == 'stats' ? 'active':''?>">
                         <a class="nav-link" href="<?=$project_path?>stats.php">Stats</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
+<div class="content">
