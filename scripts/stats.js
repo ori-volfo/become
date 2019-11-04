@@ -39,9 +39,12 @@ var stats = (function(){
 
     const initAgesChart = ()=>{
         let agesArr = [];
+        let axisArr = [];
         dataArr.map(user=>agesArr.push(user.age));
 
-        populateBarChart('#agesChart',agesArr.sort());
+        agesArr = Array.from(oCount(agesArr.sort())); // Convert array to [age,count] pairs
+        agesArr.forEach((coordinate)=>axisArr.push({x:coordinate[0],y:coordinate[1],r:coordinate[1]*3}));
+        populateBubbleChart('#agesChart',axisArr);
     };
 
     /**
@@ -63,23 +66,31 @@ var stats = (function(){
         });
     };
 
-    const populateBarChart = (canvasElem, dataArr)=>{
+    const populateBubbleChart = (canvasElem, dataArr)=>{
         let ctx = $(canvasElem)[0].getContext('2d');
         let myBarChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'bubble',
             data: {
                 datasets: [{
                     label: '',
                     data: dataArr,
-                    backgroundColor: dataArr.map(item=>intToRGB(item*1234567)) //creates RGB color for each bar. multiplied by 1234567 to diversify the colors.
+                    backgroundColor: dataArr.map(item=>intToRGB(item.x*1234567)) //creates RGB color for each bar. multiplied by 1234567 to diversify the colors.
                 }],
-                labels: dataArr, // graph labels
             },
             options: {
                 legend: {
                     display: false,
                 },
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            max: 4,
+                            stepSize: 1
+                        }
+                    }]
+                }
             }
         });
     };
@@ -107,6 +118,10 @@ var stats = (function(){
             .toUpperCase();
         return '#'+("00000".substring(0, 6 - c.length) + c);
     };
+
+    const oCount = (arr) => new Map([...new Set(arr)].map(
+        x => [x, arr.filter(y => y === x).length]
+    ));
 
     return{
         init

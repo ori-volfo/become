@@ -9,15 +9,15 @@ include 'partials/header.php';
         <h1><?=ucwords($title)?></h1>
         <div class="row charts">
             <div class="cities col-lg-6">
-                <h2 class="text-center">Cities</h2>
+                <h2 class="text-center">Users by cities</h2>
                 <canvas id="citiesChart" width="400" height="400"></canvas>
             </div>
             <div class="countries col-lg-6">
-                <h2 class="text-center">Countries</h2>
+                <h2 class="text-center">Users by countries</h2>
                 <canvas id="countriesChart" width="400" height="400"></canvas>
             </div>
             <div class="ages col-lg-12">
-                <h2 class="text-center">Ages</h2>
+                <h2 class="text-center">Users by ages</h2>
                 <div class="agesCanvas"">
                     <canvas id="agesChart" width="400" height="400"></canvas>
                 </div>

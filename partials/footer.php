@@ -7,6 +7,8 @@
                     </div>
                 </div>
         </footer>
+        <script src="<?=$project_path.'scripts/utils.js'?>" ></script>
+        <script src="<?=$project_path.'scripts/'.$title.'.js'?>"></script>
         <script defer>
             <?=$title?>.init({projectPath: "<?=$project_path?>"});
         </script>

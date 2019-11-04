@@ -17,8 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.bundle.min.js"></script>
-    <script src="<?=$project_path.'scripts/utils.js'?>" ></script>
-    <script src="<?=$project_path.'scripts/'.$title.'.js'?>"></script>
+
 </head>
 <body>
     <header>
@@ -29,11 +28,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item <?= $title == 'users' ? 'active':''?>">
-                        <a class="nav-link" href="<?=$project_path?>users.php">Users</a>
+                    <li class="nav-item <?= $title == 'get-users' ? 'active':''?>">
+                        <a class="nav-link" href="<?=$project_path?>get-users.php">Get users</a>
                     </li>
                     <li class="nav-item <?= $title == 'stats' ? 'active':''?>">
                         <a class="nav-link" href="<?=$project_path?>stats.php">Stats</a>
+                    </li>
+                    <li class="nav-item <?= $title == 'users' ? 'active':''?>">
+                        <a class="nav-link" href="<?=$project_path?>users.php">Users table</a>
                     </li>
                 </ul>
             </div>

@@ -1,5 +1,8 @@
 <?php
+$title = 'get-users';
 
+include 'env.php';
+include 'partials/header.php';
 require_once('db.php');
 
 function main(){
@@ -51,18 +54,40 @@ function main(){
         }
     }
 
-    echo '<pre>';
-    print_r($log);
-    echo '</pre>';
+    render_results_table($log);
 }
 
 main();
-
 
 /*
  *  Helper Functions
  */
 
+/**
+ * gets an assoc array and prints a formated table of the $key=>$value pair
+ * @param array $results
+ */
+function render_results_table($results){
+    $html = '<table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Operation</th>
+                  <th scope="col">Executed</th>
+                </tr>
+              </thead>
+              <tbody>';
+
+    foreach ($results as $key=>$value){
+        $html .= '<tr>
+                      <td>'.$key.'</td>
+                      <td>'.$value.'</td>
+                  </tr>';
+    }
+    $html .= '</tbody>
+            </table>';
+
+    print_r($html);
+}
 
 /**
  * @param string $date format: yyyy-mm-dd
