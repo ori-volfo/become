@@ -1,7 +1,7 @@
 <?php
-$title = 'get-users';
+include 'globals.php';
 
-include 'env.php';
+$title = 'get-users';
 include 'partials/header.php';
 require_once('db.php');
 
@@ -59,6 +59,8 @@ function main(){
 
 main();
 
+
+include 'partials/footer.php';
 /*
  *  Helper Functions
  */

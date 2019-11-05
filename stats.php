@@ -1,7 +1,7 @@
 <?php
+include 'globals.php';
 $title = 'stats';
 
-include 'env.php';
 include 'partials/header.php';
 ?>
 <main>
